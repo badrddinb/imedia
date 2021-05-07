@@ -16,8 +16,12 @@ import java.util.Optional;
 @RequestMapping("/api/products")
 public class ProductController {
 
+    private final ProductService productService;
+
     @Autowired
-    private ProductService productService;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
@@ -25,24 +29,24 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Product>> getProductById(@PathVariable String id) {
+    public ResponseEntity<Optional<Product>> getProductById(@PathVariable Long id) {
         return ResponseEntity.ok(productService.getProductById(id));
     }
 
     @PostMapping("/create")
-    public ResponseEntity addProduct(@Validated @RequestBody Product product) {
+    public ResponseEntity<Exception> addProduct(@Validated @RequestBody Product product) {
         productService.addProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping
-    public ResponseEntity updateProduct(@Validated @RequestBody Product product) {
+    public ResponseEntity<Exception> updateProduct(@Validated @RequestBody Product product) {
         productService.updateProduct(product);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteProductById(@PathVariable String id) {
+    public ResponseEntity<Exception> deleteProductById(@PathVariable Long id) {
         productService.deleteProductById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

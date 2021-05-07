@@ -16,8 +16,12 @@ import java.util.Optional;
 @RequestMapping("/api/categories")
 public class CategoryController {
 
+    private final CategoryService categoryService;
+
     @Autowired
-    private CategoryService categoryService;
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Category>> getAllCategories() {
@@ -25,29 +29,29 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Category>> getCategoryById(@PathVariable String id) {
+    public ResponseEntity<Optional<Category>> getCategoryById(@PathVariable Long id) {
         return ResponseEntity.ok(categoryService.getCategoryById(id));
     }
 
     @GetMapping("/tree/{id}")
-    public ResponseEntity<List<String>> getCategoryTreeById(@PathVariable String id) {
+    public ResponseEntity<List<String>> getCategoryTreeById(@PathVariable Long id) {
         return ResponseEntity.ok(categoryService.getCategoryTreeById(id));
     }
 
     @PostMapping("/create")
-    public ResponseEntity addCategory(@Validated @RequestBody Category category) {
+    public ResponseEntity<Exception> addCategory(@Validated @RequestBody Category category) {
         categoryService.addCategory(category);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping
-    public ResponseEntity updateCategory(@Validated @RequestBody Category category) {
+    public ResponseEntity<Exception> updateCategory(@Validated @RequestBody Category category) {
         categoryService.updateCategory(category);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteCategoryById(@PathVariable String id) {
+    public ResponseEntity<Exception> deleteCategoryById(@PathVariable Long id) {
         categoryService.deleteCategoryById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

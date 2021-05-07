@@ -11,15 +11,19 @@ import java.util.Optional;
 @Service
 public class ProductService {
 
-    @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    public Optional<Product> getProductById(String id) {
-        return productRepository.findById(id);
+    public Optional<Product> getProductById(Long id) {
+        return productRepository.findById(id.toString());
     }
 
     public void addProduct(Product product) {
@@ -33,15 +37,14 @@ public class ProductService {
         // Update data
         savedProduct.setName(product.getName());
         savedProduct.setDesc(product.getDesc());
-        savedProduct.setPrices(product.getPrices());
-        savedProduct.setCurrencies(product.getCurrencies());
+        savedProduct.setPriceId(product.getPriceId());
         savedProduct.setCategoryId(product.getCategoryId());
         savedProduct.setImage(product.getImage());
 
         productRepository.save(savedProduct);
     }
 
-    public void deleteProductById(String id) {
-        productRepository.deleteById(id);
+    public void deleteProductById(Long id) {
+        productRepository.deleteById(id.toString());
     }
 }

@@ -13,15 +13,19 @@ import java.util.Optional;
 @Service
 public class CategoryService {
 
-    @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    public CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
 
-    public Optional<Category> getCategoryById(String id) {
-        return categoryRepository.findById(id);
+    public Optional<Category> getCategoryById(Long id) {
+        return categoryRepository.findById(id.toString());
     }
 
     public void addCategory(Category category) {
@@ -41,20 +45,20 @@ public class CategoryService {
         categoryRepository.save(savedCategory);
     }
 
-    public void deleteCategoryById(String id) {
-        categoryRepository.deleteById(id);
+    public void deleteCategoryById(Long id) {
+        categoryRepository.deleteById(id.toString());
     }
 
-    public List<String> getCategoryTreeById(String id) {
+    public List<String> getCategoryTreeById(Long id) {
         List<String> categoriesTreeNames = new ArrayList<>(Collections.emptyList());
 
-        List<String> categoriesTreeIds = new ArrayList<>(Collections.singletonList(id));
+        List<Long> categoriesTreeIds = new ArrayList<>(Collections.singletonList(id));
         boolean isChildCategory = true;
         do {
-            String currentCategoryId = categoriesTreeIds.get(categoriesTreeIds.size() - 1);
-            Optional<Category> currentCategory = categoryRepository.findById(currentCategoryId);
+            Long currentCategoryId = categoriesTreeIds.get(categoriesTreeIds.size() - 1);
+            Optional<Category> currentCategory = categoryRepository.findById(currentCategoryId.toString());
             if (currentCategory.isPresent() && currentCategory.get().getParent() != null) {
-                categoriesTreeIds.add(currentCategory.get().getParent().toString());
+                categoriesTreeIds.add(currentCategory.get().getParent());
                 categoriesTreeNames.add(currentCategory.get().getName());
             } else isChildCategory = false;
         } while (isChildCategory);

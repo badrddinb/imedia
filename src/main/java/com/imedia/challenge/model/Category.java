@@ -6,13 +6,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.net.URL;
-import java.util.UUID;
 
 @Document
 public class Category {
 
     @Id
-    private String id;
+    private Long id;
 
     @Field(name = "name")
     @NotNull
@@ -23,13 +22,13 @@ public class Category {
     private String desc;
 
     @Field(name = "parent")
-    private UUID parent;
+    private Long parent;
 
     @Field(name = "icon")
     @NotNull
     private URL icon;
 
-    public Category(String id, String name, String desc, UUID parent, URL icon) {
+    public Category(Long id, String name, String desc, Long parent, URL icon) {
         this.id = id;
         this.name = name;
         this.desc = desc;
@@ -37,11 +36,11 @@ public class Category {
         this.icon = icon;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -61,11 +60,11 @@ public class Category {
         this.desc = desc;
     }
 
-    public UUID getParent() {
+    public Long getParent() {
         return parent;
     }
 
-    public void setParent(UUID parent) {
+    public void setParent(Long parent) {
         this.parent = parent;
     }
 

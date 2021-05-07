@@ -6,13 +6,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.net.URL;
-import java.util.UUID;
 
 @Document
 public class Product {
 
     @Id
-    private String id;
+    private Long id;
 
     @Field(name = "name")
     @NotNull
@@ -22,37 +21,32 @@ public class Product {
     @NotNull
     private String desc;
 
-    @Field(name = "prices")
+    @Field(name = "priceId")
     @NotNull
-    private float[] prices;
-
-    @Field(name = "currencies")
-    @NotNull
-    private String[] currencies;
+    private Long priceId;
 
     @Field(name = "categoryId")
     @NotNull
-    private UUID categoryId;
+    private Long categoryId;
 
     @Field(name = "image")
     @NotNull
     private URL image;
 
-    public Product(String id, String name, String desc, float[] prices, String[] currencies, UUID categoryId, URL image) {
+    public Product(Long id, String name, String desc, Long priceId, Long categoryId, URL image) {
         this.id = id;
         this.name = name;
         this.desc = desc;
-        this.prices = prices;
-        this.currencies = currencies;
+        this.priceId = priceId;
         this.categoryId = categoryId;
         this.image = image;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -72,27 +66,19 @@ public class Product {
         this.desc = desc;
     }
 
-    public float[] getPrices() {
-        return prices;
+    public Long getPriceId() {
+        return priceId;
     }
 
-    public void setPrices(float[] prices) {
-        this.prices = prices;
+    public void setPriceId(Long priceId) {
+        this.priceId = priceId;
     }
 
-    public String[] getCurrencies() {
-        return currencies;
-    }
-
-    public void setCurrencies(String[] currencies) {
-        this.currencies = currencies;
-    }
-
-    public UUID getCategoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(UUID categoryId) {
+    public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
 
