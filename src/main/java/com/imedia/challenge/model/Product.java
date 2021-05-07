@@ -12,7 +12,7 @@ import java.util.UUID;
 public class Product {
 
     @Id
-    private UUID id;
+    private String id;
 
     @Field(name = "name")
     @NotNull
@@ -38,7 +38,7 @@ public class Product {
     @NotNull
     private URL image;
 
-    public Product(UUID id, String name, String desc, float[] prices, String[] currencies, UUID categoryId, URL image) {
+    public Product(String id, String name, String desc, float[] prices, String[] currencies, UUID categoryId, URL image) {
         this.id = id;
         this.name = name;
         this.desc = desc;
@@ -48,11 +48,11 @@ public class Product {
         this.image = image;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

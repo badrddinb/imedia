@@ -12,7 +12,7 @@ import java.util.UUID;
 public class Category {
 
     @Id
-    private UUID id;
+    private String id;
 
     @Field(name = "name")
     @NotNull
@@ -29,7 +29,7 @@ public class Category {
     @NotNull
     private URL icon;
 
-    public Category(UUID id, String name, String desc, UUID parent, URL icon) {
+    public Category(String id, String name, String desc, UUID parent, URL icon) {
         this.id = id;
         this.name = name;
         this.desc = desc;
@@ -37,11 +37,11 @@ public class Category {
         this.icon = icon;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
