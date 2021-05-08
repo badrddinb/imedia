@@ -20,8 +20,9 @@ public class PriceService {
         return priceRepository.findAll();
     }
 
-    public Optional<Price> getPriceById(Long id) {
-        return priceRepository.findById(id.toString());
+    public Price getPriceById(Long id) {
+        return priceRepository.findById(id.toString())
+                .orElseThrow(() -> new RuntimeException( String.format("Cannot find Price with id: %s", id)));
     }
 
     public void addPrice(Price price) {
@@ -30,7 +31,7 @@ public class PriceService {
 
     public void updatePrice(Price price) {
         Price savedPrice = priceRepository.findById(price.getId().toString())
-                .orElseThrow(() -> new RuntimeException( String.format("Cannot find Product by id: %s", price.getId().toString())));
+                .orElseThrow(() -> new RuntimeException( String.format("Cannot find Price by id: %s", price.getId().toString())));
 
         // Update data
         savedPrice.setPrice(price.getPrice());

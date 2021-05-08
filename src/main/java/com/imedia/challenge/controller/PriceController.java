@@ -23,13 +23,13 @@ public class PriceController {
         this.priceService = priceService;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Price>> getAllPrices() {
         return ResponseEntity.ok(priceService.getAllPrices());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Price>> getPriceById(@PathVariable Long id) {
+    public ResponseEntity<Price> getPriceById(@PathVariable Long id) {
         return ResponseEntity.ok(priceService.getPriceById(id));
     }
 

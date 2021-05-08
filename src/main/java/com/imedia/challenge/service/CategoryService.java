@@ -24,8 +24,9 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Optional<Category> getCategoryById(Long id) {
-        return categoryRepository.findById(id.toString());
+    public Category getCategoryById(Long id) {
+        return categoryRepository.findById(id.toString())
+                .orElseThrow(() -> new RuntimeException( String.format("Cannot find Category with id: %s", id)));
     }
 
     public void addCategory(Category category) {
@@ -34,7 +35,7 @@ public class CategoryService {
 
     public void updateCategory(Category category) {
         Category savedCategory = categoryRepository.findById(category.getId().toString())
-                .orElseThrow(() -> new RuntimeException( String.format("Cannot find Product by id: %s", category.getId().toString())));
+                .orElseThrow(() -> new RuntimeException( String.format("Cannot find Category by id: %s", category.getId().toString())));
 
         // Update data
         savedCategory.setName(category.getName());
