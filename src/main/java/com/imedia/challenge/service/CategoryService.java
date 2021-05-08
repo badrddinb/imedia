@@ -24,8 +24,8 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category getCategoryById(Long id) {
-        return categoryRepository.findById(id.toString())
+    public Category getCategoryById(String id) {
+        return categoryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException( String.format("Cannot find Category with id: %s", id)));
     }
 
@@ -34,8 +34,8 @@ public class CategoryService {
     }
 
     public void updateCategory(Category category) {
-        Category savedCategory = categoryRepository.findById(category.getId().toString())
-                .orElseThrow(() -> new RuntimeException( String.format("Cannot find Category by id: %s", category.getId().toString())));
+        Category savedCategory = categoryRepository.findById(category.getId())
+                .orElseThrow(() -> new RuntimeException( String.format("Cannot find Category by id: %s", category.getId())));
 
         // Update data
         savedCategory.setName(category.getName());
@@ -46,18 +46,18 @@ public class CategoryService {
         categoryRepository.save(savedCategory);
     }
 
-    public void deleteCategoryById(Long id) {
-        categoryRepository.deleteById(id.toString());
+    public void deleteCategoryById(String id) {
+        categoryRepository.deleteById(id);
     }
 
-    public List<String> getCategoryTreeById(Long id) {
+    public List<String> getCategoryTreeById(String id) {
         List<String> categoriesTreeNames = new ArrayList<>(Collections.emptyList());
 
-        List<Long> categoriesTreeIds = new ArrayList<>(Collections.singletonList(id));
+        List<String> categoriesTreeIds = new ArrayList<>(Collections.singletonList(id));
         boolean isChildCategory = true;
         do {
-            Long currentCategoryId = categoriesTreeIds.get(categoriesTreeIds.size() - 1);
-            Optional<Category> currentCategory = categoryRepository.findById(currentCategoryId.toString());
+            String currentCategoryId = categoriesTreeIds.get(categoriesTreeIds.size() - 1);
+            Optional<Category> currentCategory = categoryRepository.findById(currentCategoryId);
             if (currentCategory.isPresent() && currentCategory.get().getParent() != null) {
                 categoriesTreeIds.add(currentCategory.get().getParent());
                 categoriesTreeNames.add(currentCategory.get().getName());

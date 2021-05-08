@@ -11,7 +11,7 @@ import java.net.URL;
 public class Product {
 
     @Id
-    private Long id;
+    private String id;
 
     @Field(name = "name")
     @NotNull
@@ -21,32 +21,32 @@ public class Product {
     @NotNull
     private String desc;
 
-    @Field(name = "priceId")
+    @Field(name = "prices")
     @NotNull
-    private Long priceId;
+    private String[] prices;
 
     @Field(name = "categoryId")
     @NotNull
-    private Long categoryId;
+    private String categoryId;
 
     @Field(name = "image")
     @NotNull
     private URL image;
 
-    public Product(Long id, String name, String desc, Long priceId, Long categoryId, URL image) {
+    public Product(String id, String name, String desc, String[] prices, String categoryId, URL image) {
         this.id = id;
         this.name = name;
         this.desc = desc;
-        this.priceId = priceId;
+        this.prices = prices;
         this.categoryId = categoryId;
         this.image = image;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -66,19 +66,19 @@ public class Product {
         this.desc = desc;
     }
 
-    public Long getPriceId() {
-        return priceId;
+    public String[] getPrices() {
+        return prices;
     }
 
-    public void setPriceId(Long priceId) {
-        this.priceId = priceId;
+    public void setPrices(String[] prices) {
+        this.prices = prices;
     }
 
-    public Long getCategoryId() {
+    public String getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Long categoryId) {
+    public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
     }
 

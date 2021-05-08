@@ -22,8 +22,8 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product getProductById(Long id) {
-        return productRepository.findById(id.toString())
+    public Product getProductById(String id) {
+        return productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException( String.format("Cannot find Product with id: %s", id)));
     }
 
@@ -32,20 +32,20 @@ public class ProductService {
     }
 
     public void updateProduct(Product product) {
-        Product savedProduct = productRepository.findById(product.getId().toString())
-                .orElseThrow(() -> new RuntimeException( String.format("Cannot find Product by id: %s", product.getId().toString())));
+        Product savedProduct = productRepository.findById(product.getId())
+                .orElseThrow(() -> new RuntimeException( String.format("Cannot find Product by id: %s", product.getId())));
 
         // Update data
         savedProduct.setName(product.getName());
         savedProduct.setDesc(product.getDesc());
-        savedProduct.setPriceId(product.getPriceId());
+        savedProduct.setPrices(product.getPrices());
         savedProduct.setCategoryId(product.getCategoryId());
         savedProduct.setImage(product.getImage());
 
         productRepository.save(savedProduct);
     }
 
-    public void deleteProductById(Long id) {
-        productRepository.deleteById(id.toString());
+    public void deleteProductById(String id) {
+        productRepository.deleteById(id);
     }
 }

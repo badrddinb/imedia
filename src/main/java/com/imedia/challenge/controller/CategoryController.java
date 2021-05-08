@@ -29,12 +29,12 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> getCategoryById(@PathVariable Long id) {
+    public ResponseEntity<Category> getCategoryById(@PathVariable String id) {
         return ResponseEntity.ok(categoryService.getCategoryById(id));
     }
 
     @GetMapping("/tree/{id}")
-    public ResponseEntity<List<String>> getCategoryTreeById(@PathVariable Long id) {
+    public ResponseEntity<List<String>> getCategoryTreeById(@PathVariable String id) {
         return ResponseEntity.ok(categoryService.getCategoryTreeById(id));
     }
 
@@ -51,7 +51,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Exception> deleteCategoryById(@PathVariable Long id) {
+    public ResponseEntity<Exception> deleteCategoryById(@PathVariable String id) {
         categoryService.deleteCategoryById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

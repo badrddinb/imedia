@@ -5,7 +5,6 @@
        xsi:schemaLocation = "http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id = "PriceService" class = "com.imedia.challenge.service.PriceService" />
     <bean id = "ProductService" class = "com.imedia.challenge.service.ProductService" />
     <bean id = "CategoryService" class = "com.imedia.challenge.service.CategoryService" />
 

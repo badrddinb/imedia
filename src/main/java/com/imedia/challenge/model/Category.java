@@ -11,7 +11,7 @@ import java.net.URL;
 public class Category {
 
     @Id
-    private Long id;
+    private String id;
 
     @Field(name = "name")
     @NotNull
@@ -22,13 +22,13 @@ public class Category {
     private String desc;
 
     @Field(name = "parent")
-    private Long parent;
+    private String parent;
 
     @Field(name = "icon")
     @NotNull
     private URL icon;
 
-    public Category(Long id, String name, String desc, Long parent, URL icon) {
+    public Category(String id, String name, String desc, String parent, URL icon) {
         this.id = id;
         this.name = name;
         this.desc = desc;
@@ -36,11 +36,11 @@ public class Category {
         this.icon = icon;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -60,11 +60,11 @@ public class Category {
         this.desc = desc;
     }
 
-    public Long getParent() {
+    public String getParent() {
         return parent;
     }
 
-    public void setParent(Long parent) {
+    public void setParent(String parent) {
         this.parent = parent;
     }
 
