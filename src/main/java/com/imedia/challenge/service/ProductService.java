@@ -22,9 +22,8 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product getProductById(Long id) {
-        return productRepository.findById(id.toString())
-                .orElseThrow(() -> new RuntimeException( String.format("Cannot find Product with id: %s", id)));
+    public Optional<Product> getProductById(Long id) {
+        return productRepository.findById(id.toString());
     }
 
     public void addProduct(Product product) {
