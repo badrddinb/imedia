@@ -13,9 +13,7 @@ export default function App() {
     <div>
       <Switch>
         <Route path="/categories" component={Categories} />
-        <Route path="/products">
-          <Products />
-        </Route>
+        <Route path="/products" component={Products} />
         {/*
         <Route path="/products/all">
           <ProductAll />

@@ -66,7 +66,7 @@ function CategoryEdit() {
   };
 
   return (
-    <div className="category_create">
+    <div className="category_edit">
       <div>
         <h1>Current Category</h1>
         <p>{currentCategory.id}</p>
@@ -143,7 +143,7 @@ function CategoryEdit() {
         {editedStatus === 2 ? (
           <p>Success: Current category has been updated!</p>
         ) : editedStatus === 1 ? (
-          <p>Failure: Unable to update category!</p>
+          <p>Failure: Unable to update current category!</p>
         ) : null}
         {error ? <p>{error}</p> : null}
       </div>
