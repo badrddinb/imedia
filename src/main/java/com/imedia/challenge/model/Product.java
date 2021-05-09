@@ -1,6 +1,5 @@
 package com.imedia.challenge.model;
 
-import com.sun.istack.internal.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -14,23 +13,18 @@ public class Product {
     private String id;
 
     @Field(name = "name")
-    @NotNull
     private String name;
 
     @Field(name = "desc")
-    @NotNull
     private String desc;
 
     @Field(name = "prices")
-    @NotNull
     private String[] prices;
 
     @Field(name = "categoryId")
-    @NotNull
     private String categoryId;
 
     @Field(name = "image")
-    @NotNull
     private URL image;
 
     public Product(String id, String name, String desc, String[] prices, String categoryId, URL image) {
