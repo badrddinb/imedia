@@ -9,7 +9,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin("*") // Unsecure: Used only for local development
 @RestController
@@ -33,11 +32,6 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.getCategoryById(id));
     }
 
-    @GetMapping("/tree/{id}")
-    public ResponseEntity<List<String>> getCategoryTreeById(@PathVariable String id) {
-        return ResponseEntity.ok(categoryService.getCategoryTreeById(id));
-    }
-
     @PostMapping("/create")
     public ResponseEntity<Exception> addCategory(@Validated @RequestBody Category category) {
         categoryService.addCategory(category);
@@ -54,5 +48,10 @@ public class CategoryController {
     public ResponseEntity<Exception> deleteCategoryById(@PathVariable String id) {
         categoryService.deleteCategoryById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping("/tree/{id}")
+    public ResponseEntity<List<Category>> getCategoryTreeById(@PathVariable String id) {
+        return ResponseEntity.ok(categoryService.getCategoryTreeById(id));
     }
 }

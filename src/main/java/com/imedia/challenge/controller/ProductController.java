@@ -9,7 +9,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin("*") // Unsecure: Used only for local development
 @RestController
@@ -26,6 +25,11 @@ public class ProductController {
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProducts() {
         return ResponseEntity.ok(productService.getAllProducts());
+    }
+
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<Product>> getAllProductsByCategoryId(@PathVariable String categoryId) {
+        return ResponseEntity.ok(productService.getAllProductsByCategoryId(categoryId));
     }
 
     @GetMapping("/{id}")

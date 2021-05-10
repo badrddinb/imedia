@@ -50,8 +50,8 @@ public class CategoryService {
         categoryRepository.deleteById(id);
     }
 
-    public List<String> getCategoryTreeById(String id) {
-        List<String> categoriesTreeNames = new ArrayList<>(Collections.emptyList());
+    public List<Category> getCategoryTreeById(String id) {
+        List<Category> categoriesTree = new ArrayList<>(Collections.emptyList());
 
         List<String> categoriesTreeIds = new ArrayList<>(Collections.singletonList(id));
         boolean isChildCategory = true;
@@ -60,10 +60,12 @@ public class CategoryService {
             Optional<Category> currentCategory = categoryRepository.findById(currentCategoryId);
             if (currentCategory.isPresent() && currentCategory.get().getParent() != null) {
                 categoriesTreeIds.add(currentCategory.get().getParent());
-                categoriesTreeNames.add(currentCategory.get().getName());
+                categoriesTree.add(currentCategory.get());
             } else isChildCategory = false;
         } while (isChildCategory);
 
-        return categoriesTreeNames;
+        Collections.reverse(categoriesTree);
+
+        return categoriesTree;
     }
 }

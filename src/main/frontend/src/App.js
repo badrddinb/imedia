@@ -2,43 +2,33 @@ import React from "react";
 import './App.css'
 import { Route, Switch } from "react-router-dom";
 
-// import ProductsOLD from './components/ProductsOLD'
-// import ProductOLD from './components/ProductOLD'
-
+import Product from './components/Product'
+import Category from './components/Category'
 import Categories from './components/Categories'
-import Products from './components/Products'
+import CategoryProducts from './components/CategoryProducts'
+import Admin from './components/Admin'
+import Main from './components/Main'
 
 export default function App() {
   return (
     <div>
       <Switch>
-        <Route path="/categories" component={Categories} />
-        <Route path="/products" component={Products} />
-        {/*
-        <Route path="/products/all">
-          <ProductAll />
-        </Route>
-        <Route path="/products/create">
-          <ProductCreate />
-        </Route>
-        <Route path="/products/:productId/edit">
-          <ProductEdit />
-        </Route>
-        <Route path="/products/:productId/remove">
-          <ProductRemove />
-        </Route>
-        <Route path="/products/:productId">
+        <Route path="/product/:productId">
           <Product />
         </Route>
-        */}
-        {/*
-        <Route exact path="/">
-          <Products />
+        <Route path="/category/:categoryId">
+          <Category />
         </Route>
-        <Route path="/:productId">
-          <Product />
+        <Route path="/categories">
+          <Categories />
         </Route>
-        */}
+        <Route path="/productscategory/:categoryId">
+          <CategoryProducts />
+        </Route>
+        <Route path="/admin" component={Admin} />
+        <Route path="/">
+          <Main />
+        </Route>
       </Switch>
     </div>
   );

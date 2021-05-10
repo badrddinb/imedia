@@ -22,6 +22,10 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public List<Product> getAllProductsByCategoryId(String categoryId) {
+        return productRepository.findAllByCategoryId(categoryId);
+    }
+
     public Product getProductById(String id) {
         return productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException( String.format("Cannot find Product with id: %s", id)));

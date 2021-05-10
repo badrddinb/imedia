@@ -10,7 +10,7 @@ export default function Products({ match }) {
   return (
     <div>
       <Switch>
-        <Route path={`${match.path}/all`}>
+        <Route exact path={`${match.path}`}>
           <ProductAll />
         </Route>
         <Route path={`${match.path}/create`}>
